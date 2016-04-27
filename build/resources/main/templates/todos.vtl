@@ -1,0 +1,12 @@
+<h1>todo list!</h1>
+<p></p>
+
+<ul>
+  #foreach ($todo in $todos)
+  <li><a href="/todos/$todo.getId()">$todo.getDescription()</a></li>
+  #end
+</ul>
+
+<a href="/todos/new">Add new todo to the list</a>
+<!-- <a href="/todos">All todos</a> -->
+<a href="/todos">view list</a>

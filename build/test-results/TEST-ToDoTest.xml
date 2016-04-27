@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="ToDoTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-04-27T16:35:38" hostname="epicodus-67.local" time="0.029">
+<testsuite name="ToDoTest" tests="9" skipped="0" failures="0" errors="0" timestamp="2016-04-27T18:28:49" hostname="epicodus-67.local" time="0.002">
   <properties/>
-  <testcase name="getId_todosInstantiateWithAnID_1" classname="ToDoTest" time="0.02"/>
+  <testcase name="getId_todosInstantiateWithAnID_1" classname="ToDoTest" time="0.0"/>
   <testcase name="find_returnsNullWhenNoToDoFound_null" classname="ToDoTest" time="0.001"/>
-  <testcase name="all_returnsAllInstancesOfTodo_true" classname="ToDoTest" time="0.001"/>
-  <testcase name="clear_emptiesAllToDosFromArrayList_0" classname="ToDoTest" time="0.001"/>
+  <testcase name="all_returnsAllInstancesOfTodo_true" classname="ToDoTest" time="0.0"/>
+  <testcase name="clear_emptiesAllToDosFromArrayList_0" classname="ToDoTest" time="0.0"/>
   <testcase name="getCreatedAt_instantiatesWithCurrentTime_today" classname="ToDoTest" time="0.0"/>
   <testcase name="isCompleted_isFalseAfterInstantiation_false" classname="ToDoTest" time="0.0"/>
-  <testcase name="todo_instantiatesCorrectly_true" classname="ToDoTest" time="0.001"/>
-  <testcase name="todo_instantiatesWithDescription_String" classname="ToDoTest" time="0.0"/>
+  <testcase name="todo_instantiatesCorrectly_true" classname="ToDoTest" time="0.0"/>
+  <testcase name="todo_instantiatesWithDescription_String" classname="ToDoTest" time="0.001"/>
   <testcase name="find_returnsToDoWithSameId_secondToDo" classname="ToDoTest" time="0.0"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>

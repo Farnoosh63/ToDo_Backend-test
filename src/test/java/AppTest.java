@@ -22,27 +22,54 @@ public class AppTest extends FluentTest {
   @Test
   public void rootTest() {
     goTo("http://localhost:4567/");
-    assertThat(pageSource()).contains("");
+    assertThat(pageSource()).contains("Add new todo to the list");
   }
 
-  // @Test
-  // public void isALeapYear() {
-  //   goTo("http://localhost:4567");
-  //   fill("#year").with("2004");
-  //   submit(".btn");
-  //   assertThat(pageSource()).contains("2004 is a leap year!");
-  // }
-  //
-  // @Test
-  // public void multipleTasksAreDisplayedTest() {
-  //   goTo("http://localhost:4567/");
-  //   fill("#description").with("task description");
-  //   submit(".btn");
-  //   click("a", withText("Go Back"));
-  //   fill("#description").with("another task description");
-  //   submit(".btn");
-  //   click("a", withText("Go Back"));
-  //   assertThat(pageSource()).contains("task description");
-  //   assertThat(pageSource()).contains("another task description");
-  // }
+  @Test
+    public void taskIsCreatedTest() {
+      goTo("http://localhost:4567/");
+      click("a", withText("Add new todo to the list"));
+      fill("#description").with("Mow the lawn");
+      submit(".btn");
+      assertThat(pageSource()).contains("Your task has been saved.");
+    }
+
+    @Test
+    public void taskIsDisplayedTest() {
+      goTo("http://localhost:4567/todos/new");
+      fill("#description").with("Mow the lawn");
+      submit(".btn");
+      click("a", withText("view list"));
+      assertThat(pageSource()).contains("Mow the lawn");
+    }
+
+    @Test
+    public void multipleTasksAreDisplayedTest() {
+      goTo("http://localhost:4567/todos/new");
+      fill("#description").with("Mow the lawn");
+      submit(".btn");
+      goTo("http://localhost:4567/todos/new");
+      fill("#description").with("Buy groceries");
+      submit(".btn");
+      click("a", withText("view list"));
+      assertThat(pageSource()).contains("Mow the lawn");
+      assertThat(pageSource()).contains("Buy groceries");
+    }
+
+    @Test
+    public void taskShowPageDisplaysDescription() {
+      goTo("http://localhost:4567/todos/new");
+      fill("#description").with("Do the dishes");
+      submit(".btn");
+      click("a", withText("view list"));
+      click("a", withText("Do the dishes"));
+      assertThat(pageSource()).contains("Do the dishes");
+    }
+
+    @Test
+    public void taskNotFoundMessageShown() {
+      goTo("http://localhost:4567/todos/999");
+      assertThat(pageSource()).contains("Item not found");
+    }
+
 }

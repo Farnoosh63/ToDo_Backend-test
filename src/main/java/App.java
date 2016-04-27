@@ -9,42 +9,41 @@ import java.util.ArrayList;
 public class App {
   public static void main(String[] args) {
 
-    // staticFileLocation("/public");
-    //
-    // get("/", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //   model.put("template", "templates/home.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
-    //
-    // get("/detector", (request, response) -> {
-    //   Map<String, Object> model = new HashMap<String, Object>();
-    //
-    //   String userInput = request.queryParams("number");
-    //   NumbersToWords newNumbers = new NumbersToWords();
-    //   String convertedNumber = newNumbers.integerConverter(userInput);
-    //   model.put("convertedNumber", convertedNumber);
-    //
-    //   model.put("template", "templates/detector.vtl");
-    //   return new ModelAndView(model, "templates/layout.vtl");
-    // }, new VelocityTemplateEngine());
-    //
-    // post("/tasks", (request, response) -> {
-    //     Map<String, Object> model = new HashMap<String, Object>();
-    //
-    //     ArrayList<Task> tasks = request.session().attribute("tasks");
-    //     if (tasks == null) {
-    //       tasks = new ArrayList<Task>();
-    //       request.session().attribute("tasks", tasks);
-    //     }
-    //
-    //     String description = request.queryParams("description");
-    //     Task newTask = new Task(description);
-    //     tasks.add(newTask);
-    //     // request.session().attribute("tasks",newTask);
-    //
-    //     model.put("template", "templates/success.vtl");
-    //     return new ModelAndView(model, "templates/layout.vtl");
-    //   }, new VelocityTemplateEngine());
+    staticFileLocation("/public");
+
+    get("/", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/home.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("todos/new", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("template", "templates/todoForm.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/todos", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      model.put("todos", ToDo.all());
+      model.put("template", "templates/todos.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    post("/todos", (request, response) -> {
+      Map<String, Object> model = new HashMap<String, Object>();
+      String description = request.queryParams("description");
+      ToDo newToDo = new ToDo(description);
+      model.put("template", "templates/success.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
+
+    get("/todos/:id", (request, response) -> {
+      HashMap<String, Object> model = new HashMap<String, Object>();
+      ToDo todo = ToDo.find(Integer.parseInt(request.params(":id")));
+      model.put("todo", todo);
+      model.put("template", "templates/todo.vtl");
+      return new ModelAndView(model, "templates/layout.vtl");
+    }, new VelocityTemplateEngine());
   }
 }
